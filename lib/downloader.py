@@ -31,10 +31,10 @@ function (h, u, n, t, e, r) {
 
 
 class tiktok_downloader:
-    def __init__(self):
+    async def __init__(self):
         pass
 
-    def musicaldown(self, url, output_name):
+    async def musicaldown(self, url, output_name):
         try:
             """url: tiktok video url
             output_name: output video (.mp4). Example : video.mp4
@@ -67,8 +67,8 @@ class tiktok_downloader:
             post_url = server_url + "id/download"
             req_post = ses.post(post_url, data=data, allow_redirects=True)
             if req_post.status_code == 302 or 'This video is currently not available' in req_post.text or 'Video is private or removed!' in req_post.text:
-                print('- video private or remove')
-                return 'private/remove'
+                print('- video private or removed')
+                return 'private/removed'
             elif 'Submitted Url is Invalid, Try Again' in req_post.text:
                 print('- url is invalid')
                 return 'url-invalid'

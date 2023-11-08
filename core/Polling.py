@@ -8,7 +8,7 @@ from dotenv import dotenv_values
 token_bot = dotenv_values()['TOKEN_BOT']
 
 
-def Polling():
+async def Polling():
     api = "https://api.telegram.org/bot" + token_bot + "/"
     update_id = 0
     print("BOT ACTIVED")
@@ -24,7 +24,7 @@ def Polling():
             update_id = update['update_id'] + 1
             print("-"*40)
         except ConnectionError:
-            print('- connection error!,try again after 5 seconds !')
+            print('- connection error!, try again after 5 seconds !')
             sleep(5)
             continue
         except KeyboardInterrupt:

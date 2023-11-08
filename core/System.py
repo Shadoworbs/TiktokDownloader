@@ -6,16 +6,17 @@ from dotenv import dotenv_values
 from module.messageText import *
 from lib.sendVideo import sendVideo
 from lib.sendMessage import sendMessage
+import time
 
 token_bot = dotenv_values()['TOKEN_BOT']
 
 
-def get_time(tt):
+async def get_time(tt):
     ttime = datetime.fromtimestamp(tt)
-    return f"{ttime.hour}-{ttime.minute}-{ttime.second}-{ttime.day}-{ttime.month}-{ttime.year}"
+    return f"{ttime.hour}-{ttime.minute}-{ttime.second} {ttime.day}-{ttime.month}-{ttime.year}"
 
 
-def Bot(update):
+async def Bot(update):
     try:
         if 'callback_query' in str(update):
             userid = update['callback_query']['from']['id']
@@ -39,6 +40,11 @@ def Bot(update):
         if meseg.startswith('/start'):
             sendMessage(chat_id=userid, message=startText, message_id=msgid)
         elif "tiktok.com" in meseg and "https://" in meseg:
+            time.sleep(1)
+            sendMessage(chat_id=userid, message=awaitText, message_id=msgid)
+            time.sleep(1)
+            sendMessage(chat_id=userid, message=downloadingText, message_id=msgid)
+            time.sleep(1)
             getvid = dl.musicaldown(url=meseg, output_name="video.mp4")
             if getvid:
                 sendVideo(chat_id=userid, video="video.mp4",
@@ -51,8 +57,8 @@ def Bot(update):
         elif "/help" in meseg:
             sendMessage(
                 userid, helpText, msgid)
-        elif meseg.startswith("/donation"):
-            sendMessage(userid, donationText, msgid)
+        elif meseg.startswith("/about"):
+            sendMessage(userid, aboutText, msgid)
             return
     except KeyError as e:
         print(f"- {e}")

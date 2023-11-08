@@ -1,3 +1,4 @@
+from cgitb import text
 import os
 from telethon import TelegramClient, sync, events
 from telethon.tl.types import ReplyInlineMarkup
@@ -14,11 +15,11 @@ tokenbot = os.environ.get("TOKEN_BOT")
 
 keyboard = ReplyInlineMarkup(rows=[
     KeyboardButtonRow(buttons=[KeyboardButtonUrl(
-        text="Subscribe <3", url="https://www.youtube.com/channel/UCTjTQErgDA79Owo6tnYN0PQ?sub_confirmation=1"), KeyboardButtonCallback(text="Donation <3", data="/donation")])
+        text="Join my Channel", url="https://t.me/+F5TYQGKbBrExYzZk") , KeyboardButtonCallback(text="Need help?", data="/help")])
 ])
 
 
-def sendVideo(chat_id: int, video: str, caption: str, message_id: int):
+async def sendVideo(chat_id: int, video: str, caption: str, message_id: int):
     try:
         if not os.path.exists("session"):
             os.makedirs("session")
@@ -27,6 +28,7 @@ def sendVideo(chat_id: int, video: str, caption: str, message_id: int):
         app.start(bot_token=tokenbot)
         res = app.send_file(entity=chat_id, file=open(
             video, 'rb'), caption=caption, buttons=keyboard, reply_to=message_id)
+        os.remove("video.mp4")
         app.disconnect()
     except Exception as e:
         app.disconnect()

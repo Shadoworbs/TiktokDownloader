@@ -9,7 +9,7 @@ apihash = os.environ.get("API_HASH")
 tokenbot = os.environ.get("TOKEN_BOT")
 
 
-def sendMessage(chat_id: int, message: str, message_id: int):
+async def sendMessage(chat_id: int, message: str, message_id: int):
     try:
         if not os.path.exists("session"):
             os.makedirs("session")
@@ -19,7 +19,7 @@ def sendMessage(chat_id: int, message: str, message_id: int):
         if message_id is None:
             app.send_message(entity=chat_id, message=message, parse_mode="markdown", link_preview=False)
             return
-        app.send_message(entity=chat_id, message=message,reply_to=message_id, parse_mode="markdown", link_preview=False)
+        app.send_message(entity=chat_id, message=message, reply_to=message_id, parse_mode="markdown", link_preview=False)
         app.disconnect()
     except Exception as e:
         app.disconnect()
