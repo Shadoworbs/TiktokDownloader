@@ -15,11 +15,17 @@ tokenbot = os.environ.get("TOKEN_BOT")
 
 keyboard = ReplyInlineMarkup(rows=[
     KeyboardButtonRow(buttons=[KeyboardButtonUrl(
-        text="Join my Channel", url="https://t.me/+F5TYQGKbBrExYzZk") , KeyboardButtonCallback(text="Need help?", data="/help")])
+        text="Cracked Software", url="https://t.me/+F5TYQGKbBrExYzZk") ]),
+    KeyboardButtonRow(buttons=[KeyboardButtonUrl(
+        text="Latest Movies", url="https://t.me/+BdXh4y_MFqBhZTA0") ]),
+    KeyboardButtonRow(buttons=[KeyboardButtonUrl(
+        text="Owner", url="https://t.me/shadoworbs")])
 ])
 
 
-async def sendVideo(chat_id: int, video: str, caption: str, message_id: int):
+
+
+def sendVideo(chat_id: int, video: str, caption: str, message_id: int):
     try:
         if not os.path.exists("session"):
             os.makedirs("session")

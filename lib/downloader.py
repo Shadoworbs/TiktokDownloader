@@ -31,10 +31,10 @@ function (h, u, n, t, e, r) {
 
 
 class tiktok_downloader:
-    async def __init__(self):
+    def __init__(self):
         pass
 
-    async def musicaldown(self, url, output_name):
+    def musicaldown(self, url, output_name):
         try:
             """url: tiktok video url
             output_name: output video (.mp4). Example : video.mp4

@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 
 @app.route("/", methods=["POST", "GET"])
-async def index():
+def index():
     if request.method == 'POST':
         update = request.get_json()
         Bot(update)

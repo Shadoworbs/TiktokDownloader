@@ -1,5 +1,6 @@
+from cgitb import text
 import os
-from telethon import TelegramClient, events, sync
+from telethon import Button, TelegramClient, events, sync
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -9,7 +10,8 @@ apihash = os.environ.get("API_HASH")
 tokenbot = os.environ.get("TOKEN_BOT")
 
 
-async def sendMessage(chat_id: int, message: str, message_id: int):
+
+def sendMessage(chat_id: int, message: str, message_id: int):
     try:
         if not os.path.exists("session"):
             os.makedirs("session")

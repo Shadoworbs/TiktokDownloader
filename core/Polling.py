@@ -8,7 +8,7 @@ from dotenv import dotenv_values
 token_bot = dotenv_values()['TOKEN_BOT']
 
 
-async def Polling():
+def Polling():
     api = "https://api.telegram.org/bot" + token_bot + "/"
     update_id = 0
     print("BOT ACTIVED")

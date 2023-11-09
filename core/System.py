@@ -1,22 +1,35 @@
+from cgitb import text
+from email import utils
 import json
+from h11 import Event
 from requests import *
+from telegram import *
 from lib import downloader
 from datetime import datetime
 from dotenv import dotenv_values
 from module.messageText import *
 from lib.sendVideo import sendVideo
 from lib.sendMessage import sendMessage
+from telethon import utils
 import time
+
 
 token_bot = dotenv_values()['TOKEN_BOT']
 
 
-async def get_time(tt):
+def get_time(tt):
     ttime = datetime.fromtimestamp(tt)
     return f"{ttime.hour}-{ttime.minute}-{ttime.second} {ttime.day}-{ttime.month}-{ttime.year}"
 
 
-async def Bot(update):
+awaitText = '''Processing link, please wait.
+'''
+
+downloadingText = '''Downloading video...
+'''
+
+
+def Bot(update):
     try:
         if 'callback_query' in str(update):
             userid = update['callback_query']['from']['id']
