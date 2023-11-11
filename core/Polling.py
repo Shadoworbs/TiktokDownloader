@@ -11,7 +11,7 @@ token_bot = dotenv_values()['TOKEN_BOT']
 def Polling():
     api = "https://api.telegram.org/bot" + token_bot + "/"
     update_id = 0
-    print("BOT ACTIVED")
+    print("BOT STARTED")
     print("PRESS CTRL + C TO EXIT ")
     while True:
         try:
