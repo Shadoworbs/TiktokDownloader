@@ -2,12 +2,8 @@
 import os
 import yt_dlp
 from datetime import datetime
-from colorama import Fore   # library for colored text
 
 
-# creating a handler for colored text (optional)  (you can choose to comment out the two lines below)
-color_red, color_blue, color_cyan, color_yellow, color_magenta, color_green, color_black = Fore.RED, Fore.BLUE, Fore.CYAN, Fore.YELLOW, Fore.MAGENTA, Fore.GREEN, Fore.BLACK
-reset_color = Fore.RESET
 
 
 
@@ -62,11 +58,11 @@ def resolution(res)-> str:
 
 # Print success message when download is done
 print(f'''
-{color_green}Download complete ✅{reset_color}
-{color_cyan}Video name: {video_title +'.'+ extension}
+Download complete!
+Video name: {video_title +'.'+ extension}
 Video location 👉 : {cwd}/{video_title}.{extension}
 Video duration: {dur}
-Video resolution: {resolution(res)}p {reset_color} ''')
+Video resolution: {resolution(res)}p ''')
 
 
 # check the site the video was downloaded from
@@ -87,9 +83,9 @@ def source(url):
 
 # Print the site as Source
 print(f'''
-{color_yellow}{source(url)}{reset_color} 
+{source(url)}
 
-{color_red}<---------------------END--------------------->{reset_color}
+<---------------------END--------------------->
 ''')
 
 
